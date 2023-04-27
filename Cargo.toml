@@ -1,5 +1,5 @@
 [package]
-name = "csv_test"
+name = "csvreader"
 version = "0.1.0"
 edition = "2021"
 
