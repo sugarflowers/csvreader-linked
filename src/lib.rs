@@ -2,7 +2,6 @@ use std::io;
 use binaryfile::BinaryReader;
 use std::collections::HashMap;
 
-
 pub struct CSVReader {
     pub reader: BinaryReader,
     pub header: Vec<String>,
@@ -71,14 +70,37 @@ impl Iterator for CSVReader {
 }
 
 
-#[test]
-fn csv_read_test() {
+#[cfg(test)]
+mod tests {
 
-    let mut cr = CSVReader::open("shipping_test_data.csv");
-    cr.setup();
-    
-    for line in cr {
-        println!("{:?}", line.unwrap());
-        //println!("{}", line.unwrap().get("shipping").unwrap());
+    use crate::CSVReader;
+
+    #[test]
+    #[ignore]
+    fn csv_read_test() {
+
+        let mut cr = CSVReader::open("shipping_test_data.csv");
+        cr.setup();
+        
+        for line in cr {
+            println!("{:?}", line.unwrap());
+            //println!("{}", line.unwrap().get("shipping").unwrap());
+        }
     }
+
+    #[test]
+    fn parse_test() {
+        let mut cr = CSVReader::open("test.csv");
+        cr.setup();
+
+        for line in cr {
+            let line = line.unwrap();
+
+            //let numval:i32 = line["number"].parse().unwrap();
+            let numval:i32 = line.get("number").unwrap().parse().unwrap();
+
+            println!("string: {:8}, number: {:06}", line["string"], numval);
+        }
+    }
+
 }
