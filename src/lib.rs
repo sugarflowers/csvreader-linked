@@ -46,6 +46,9 @@ impl CSVReader {
         let buf = self.reader.next().unwrap().unwrap();
         self.parse(buf)
     }
+    pub fn keys(&self) -> impl Iterator<Item = String> + 'static {
+        self.header.iter().enumerate().map(|(i, k)| k.clone())
+    }
 }
 
 impl Iterator for CSVReader {
