@@ -1,6 +1,7 @@
 use std::io;
 use binaryfile::BinaryReader;
-use std::collections::HashMap;
+//use std::collections::HashMap;
+use linked_hash_map::LinkedHashMap;
 
 pub struct CSVReader {
     pub reader: BinaryReader,
@@ -52,10 +53,12 @@ impl CSVReader {
 }
 
 impl Iterator for CSVReader {
-    type Item = Result<HashMap<String, String>, io::Error>;
+    //type Item = Result<HashMap<String, String>, io::Error>;
+    type Item = Result<LinkedHashMap<String, String>, io::Error>;
 
     fn next( &mut self ) -> Option<Self::Item> {
-        let mut data: HashMap<String, String> = HashMap::new();
+        //let mut data: HashMap<String, String> = HashMap::new();
+        let mut data: LinkedHashMap<String, String> = LinkedHashMap::new();
         match self.reader.next() {
             Some(Ok(line)) => {
                 let row = self.parse(line);
@@ -79,10 +82,10 @@ mod tests {
     use crate::CSVReader;
 
     #[test]
-    #[ignore]
+    //#[ignore]
     fn csv_read_test() {
 
-        let mut cr = CSVReader::open("shipping_test_data.csv");
+        let mut cr = CSVReader::open("test.csv");
         cr.setup();
         
         for line in cr {
