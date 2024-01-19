@@ -1,5 +1,5 @@
 [package]
-name = "csvreader"
+name = "csvreader-linked"
 version = "0.1.0"
 edition = "2021"
 
@@ -9,3 +9,4 @@ edition = "2021"
 csv = "1.2.1"
 binaryfile = { git = "https://github.com/sugarflowers/binaryfile.git" }
 sjis = { git = "https://github.com/sugarflowers/sjis.git" }
+linked-hash-map = "0.5.6"
