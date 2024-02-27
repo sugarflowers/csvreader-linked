@@ -1,5 +1,5 @@
 /target
-Cargo.link
+Cargo.lock
 *.csv
 *.txt
 
