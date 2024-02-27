@@ -48,7 +48,7 @@ impl CSVReader {
         self.parse(buf)
     }
     pub fn keys(&self) -> impl Iterator<Item = String> + '_ {
-        self.header.iter().enumerate().map(|(i, k)| k.clone())
+        self.header.iter().enumerate().map(|(_i, k)| k.clone())
     }
 }
 
